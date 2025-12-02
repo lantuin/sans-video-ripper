@@ -211,15 +211,9 @@ const prompt = require("inquirer").createPromptModule();
         return frame.url() === host;
     });
 
-    // --------------------------------------------
-    // THIS NO LONGER WORK ANYMORE
-    // You have to navigate manually to the course
-    // --------------------------------------------
     // Click to course
-    // log("Navigating to course");
-    // await page.click(`::-p-text(${courseID})`); 
-    
-    log("Please, navigate manually to course");
+    log("Navigating to course");
+    await page.click(`::-p-text(${courseID})`);
     await page.waitForSelector("#course_outline");
     await page.waitForSelector("#course_title .ondemand-course-number__text");
 
@@ -436,4 +430,3 @@ function makePath(flatten, output, courseName, [secId, section] = [null, null], 
 function buildPath(flatten, [output, courseName, secNames, modNames, vidNames], secId, modId, vidId) {
     return makePath(flatten, output, courseName, [secId, secNames?.[secId]], [modId, modNames?.[modId]], [vidId, vidNames?.[vidId]]);
 }
-
